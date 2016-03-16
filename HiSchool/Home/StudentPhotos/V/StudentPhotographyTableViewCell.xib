@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="51" id="5Ti-XF-0Nn" customClass="StudentPhotographyTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Ti-XF-0Nn" id="CfF-ss-PVY">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moren.png" translatesAutoresizingMaskIntoConstraints="NO" id="0y4-CV-BBs">
+                        <rect key="frame" x="8" y="8" width="63" height="63"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="63" id="4k1-wh-CFL"/>
+                            <constraint firstAttribute="height" constant="63" id="Nr5-6W-zoQ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题：什么什么什么标题  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0E-Dd-kdX">
+                        <rect key="frame" x="79" y="8" width="132" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="23" id="ZXX-OV-FjB"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="齐鲁工业大学" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CK7-Zx-HP5">
+                        <rect key="frame" x="79" y="30" width="233" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="35V-K5-YO8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016.01.01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWA-3r-HaI">
+                        <rect key="frame" x="79" y="51" width="65" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="L3l-sT-hSa"/>
+                            <constraint firstAttribute="width" constant="65" id="V2E-14-bEC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moren.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y94-5O-iW9">
+                        <rect key="frame" x="152" y="51" width="21" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="Ham-pZ-aOS"/>
+                            <constraint firstAttribute="width" constant="21" id="aoK-0z-JsU"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1033" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfD-Ph-gdR">
+                        <rect key="frame" x="175" y="50" width="65" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="65" id="GV7-uA-gaZ"/>
+                            <constraint firstAttribute="height" constant="20" id="Ovd-jW-DiV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作者：金庸武侠  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yft-Bx-yQc">
+                        <rect key="frame" x="219" y="8" width="93" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="23" id="1Fc-c5-KqA"/>
+                            <constraint firstAttribute="width" constant="93" id="bop-5Y-wmb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="yft-Bx-yQc" firstAttribute="top" secondItem="CfF-ss-PVY" secondAttribute="top" constant="8" id="24f-18-QgL"/>
+                    <constraint firstItem="pfD-Ph-gdR" firstAttribute="leading" secondItem="Y94-5O-iW9" secondAttribute="trailing" constant="2" id="3uJ-h5-vex"/>
+                    <constraint firstAttribute="trailing" secondItem="yft-Bx-yQc" secondAttribute="trailing" constant="8" id="5ye-YB-IPR"/>
+                    <constraint firstItem="zWA-3r-HaI" firstAttribute="leading" secondItem="0y4-CV-BBs" secondAttribute="trailing" constant="8" id="7X3-gn-eaq"/>
+                    <constraint firstAttribute="trailing" secondItem="CK7-Zx-HP5" secondAttribute="trailing" constant="8" id="7lw-ge-pKn"/>
+                    <constraint firstItem="pfD-Ph-gdR" firstAttribute="top" secondItem="CK7-Zx-HP5" secondAttribute="bottom" id="IxM-wB-zPq"/>
+                    <constraint firstItem="yft-Bx-yQc" firstAttribute="leading" secondItem="D0E-Dd-kdX" secondAttribute="trailing" constant="8" id="OWl-cU-EJW"/>
+                    <constraint firstItem="D0E-Dd-kdX" firstAttribute="top" secondItem="CfF-ss-PVY" secondAttribute="top" constant="8" id="PXg-tV-ln9"/>
+                    <constraint firstItem="Y94-5O-iW9" firstAttribute="top" secondItem="CK7-Zx-HP5" secondAttribute="bottom" constant="1" id="UA0-Bi-8di"/>
+                    <constraint firstItem="CK7-Zx-HP5" firstAttribute="leading" secondItem="0y4-CV-BBs" secondAttribute="trailing" constant="8" id="axi-hr-2RT"/>
+                    <constraint firstItem="0y4-CV-BBs" firstAttribute="leading" secondItem="CfF-ss-PVY" secondAttribute="leading" constant="8" id="d6Q-lq-0u5"/>
+                    <constraint firstItem="CK7-Zx-HP5" firstAttribute="top" secondItem="CfF-ss-PVY" secondAttribute="top" constant="30" id="g1V-Dr-mlI"/>
+                    <constraint firstItem="zWA-3r-HaI" firstAttribute="top" secondItem="CK7-Zx-HP5" secondAttribute="bottom" constant="1" id="hgO-aD-KQy"/>
+                    <constraint firstItem="0y4-CV-BBs" firstAttribute="top" secondItem="CfF-ss-PVY" secondAttribute="top" constant="8" id="kkj-Ad-IHl"/>
+                    <constraint firstItem="Y94-5O-iW9" firstAttribute="leading" secondItem="zWA-3r-HaI" secondAttribute="trailing" constant="8" id="ob4-m7-s5p"/>
+                    <constraint firstItem="D0E-Dd-kdX" firstAttribute="leading" secondItem="0y4-CV-BBs" secondAttribute="trailing" constant="8" id="qKf-yg-Jxe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="authorLbl" destination="yft-Bx-yQc" id="oxU-qQ-Yb7"/>
+                <outlet property="iconImageView" destination="0y4-CV-BBs" id="fCI-2q-vUN"/>
+                <outlet property="numLbl" destination="pfD-Ph-gdR" id="GtU-0O-4lu"/>
+                <outlet property="timeLbl" destination="zWA-3r-HaI" id="Gqo-1u-n64"/>
+                <outlet property="titleLbl" destination="D0E-Dd-kdX" id="flv-GU-wqc"/>
+                <outlet property="universityLbl" destination="CK7-Zx-HP5" id="Obh-XZ-Dbl"/>
+            </connections>
+            <point key="canvasLocation" x="314" y="189"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="moren.png" width="500" height="500"/>
+    </resources>
+</document>

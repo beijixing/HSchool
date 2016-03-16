@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "MMDrawerController.h"
+#import "SchoolTabBarController.h"
+#import "RightVC.h"
+#import "IQKeyboardManager.h"
 
 @interface AppDelegate ()
 
@@ -17,8 +21,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //初始化IQKeyboardManager
+    [IQKeyboardManager sharedManager].enable = true;
+    
+    MMDrawerController *drawController = [[MMDrawerController alloc] init];
+    SchoolTabBarController *tabBarController = [[SchoolTabBarController alloc] init];
+    RightVC *rightVc = [[RightVC alloc] init];
+    drawController.centerViewController = tabBarController;
+    drawController.rightDrawerViewController = rightVc;
+    
+    drawController.maximumRightDrawerWidth = SCREEN_WIDTH *3/5;
+    drawController.shouldStretchDrawer = YES;
+    
+//    [drawController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [drawController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    self.window.rootViewController = drawController;
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

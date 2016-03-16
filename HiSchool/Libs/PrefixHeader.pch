@@ -1,0 +1,71 @@
+//
+//  PrefixHeader.pch
+//  HiSchool
+//
+//  Created by ybon on 16/3/4.
+//  Copyright © 2016年 ybon. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+//尺寸
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+
+//试图控制器基类
+#import "BaseViewController.h"
+//工具类
+#import "CONST.h"
+
+//三方库
+#import "AFNetworking.h"
+#import "HttpRequest.h"
+#import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
+#import "MBProgressHUD.h"
+
+
+#import "AppDelegate.h"
+#import "VideoView.h"
+
+
+//服务器接口
+#define SERVER @"http://192.168.1.209:8800"
+
+//家政服务分类
+#define WIFERYTYPE (SERVER@"/api/wiferyType/list")
+
+//搬家列表
+#define HOUSEWIFERYINFOPATH (SERVER@"/api/housewifery/home?typeId=101")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif /* PrefixHeader_pch */
