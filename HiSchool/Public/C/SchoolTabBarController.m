@@ -44,23 +44,15 @@
     [self.tabBar addSubview:tabBarView];
     
     
-    [tabBarView addButtonWithImage:[UIImage imageNamed:@"back"] selectedImage:[UIImage imageNamed:@"back"]];
+    [tabBarView addButtonWithImage:[UIImage imageNamed:@"tabBar_left"] selectedImage:[UIImage imageNamed:@"tabBar_left_active"]];
+    [tabBarView addButtonWithImage:[UIImage imageNamed:@"tabBar_right"] selectedImage:[UIImage imageNamed:@"tabBar_right_active"]];
+    [tabBarView addButtonWithImage:[UIImage imageNamed:@"tabBar_home"] selectedImage:[UIImage imageNamed:@"tabBar_home_active"]];
+    [tabBarView addButtonWithImage:[UIImage imageNamed:@"tabBar_message"] selectedImage:[UIImage imageNamed:@"tabBar_message_active"]];
     
     //为控制器添加按钮
-    for (int i=0; i<self.viewControllers.count; i++) { //根据有多少个子视图控制器来进行添加按钮
-        
-        NSString *imageName = [NSString stringWithFormat:@"tabBar%d", i+1];
-        NSString *imageNameSel = [NSString stringWithFormat:@"tabBar%d_active", i + 1];
-        
-        UIImage *image = [UIImage imageNamed:imageName];
-        UIImage *imageSel = [UIImage imageNamed:imageNameSel];
-        
-        [tabBarView addButtonWithImage:image selectedImage:imageSel];
-    }
-    
-     [tabBarView addButtonWithImage:[UIImage imageNamed:@"tabBar3"] selectedImage:[UIImage imageNamed:@"tabBar3_active"]];
+    [tabBarView addButtonWithImage:[UIImage imageNamed:@"tabBar_user"] selectedImage:[UIImage imageNamed:@"tabBar_user_active"]];
     self.selectedIndex = 0;
-    [tabBarView setSelectedBarButtonWithIdx:1];
+    [tabBarView setSelectedBarButtonWithIdx:2];
 }
 
 - (void)tabBar:(CustomTabBar *)tabBar selectedFrom:(NSInteger)from to:(NSInteger)to {
@@ -79,18 +71,18 @@
             }
             break;
         case 1:
-            self.selectedIndex = to-1;
-            break;
+            
         case 2:
-            self.selectedIndex = to-1;
+            self.selectedIndex = to-2;
             break;
         case 3:
+            self.selectedIndex = to-2;
+            break;
+        case 4:
             {
                 [self.mm_drawerController openDrawerSide:MMDrawerSideRight animated:YES completion:^(BOOL finished) {
                 }];
             }
-            break;
-        case 4:
             break;
         default:
             break;

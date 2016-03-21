@@ -10,5 +10,5 @@
 
 @interface RightViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-
+@property (strong, nonatomic) IBOutlet UIImageView *titleImage;
 @end

@@ -12,6 +12,12 @@
 #import "RightVC.h"
 #import "IQKeyboardManager.h"
 
+//友盟
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialQQHandler.h"
+#import "UMSocialSinaSSOHandler.h"
+
 @interface AppDelegate ()
 
 @end
@@ -31,13 +37,36 @@
     drawController.centerViewController = tabBarController;
     drawController.rightDrawerViewController = rightVc;
     
-    drawController.maximumRightDrawerWidth = SCREEN_WIDTH *3/5;
+    drawController.maximumRightDrawerWidth = SCREEN_WIDTH *2/3;
     drawController.shouldStretchDrawer = YES;
     
 //    [drawController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [drawController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     self.window.rootViewController = drawController;
+    
+    
+    
+    //友盟
+    [UMSocialData setAppKey:@"5690674767e58ee2e6000f7e"];
+    
+    [UMSocialWechatHandler setWXAppId:@"wx88fd1974afdec982" appSecret:@"01e2de30d3e6b230449bdb97abcaba7a" url:@"http://www.umeng.com/social"];
+    
+    [UMSocialQQHandler setQQWithAppId:@"1105103124" appKey:@"NQqtUUOkJRKdTgPl" url:@"http://www.umeng.com/social"];
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"3921700954"
+                                              secret:@"04b48b094faeb16683c32669824ebdad"
+                                         RedirectURL:@"http://www.baidu.com"];
+    
+    
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        //调用其他SDK，例如支付宝SDK等
+    }
+    return result;
 }
 
 

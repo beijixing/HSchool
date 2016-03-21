@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="RevelationDetailTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconroundcell.png" translatesAutoresizingMaskIntoConstraints="NO" id="33V-Hu-HJH">
+                        <rect key="frame" x="8" y="8" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="4R8-7L-cF0"/>
+                            <constraint firstAttribute="width" constant="20" id="Tb1-4n-Zhl"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="建大才子" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CcX-Tt-yuK">
+                        <rect key="frame" x="36" y="8" width="49" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="49" id="M6s-Oe-Xnm"/>
+                            <constraint firstAttribute="height" constant="21" id="mes-T6-0Qh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="山东商业职业技术学院" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQF-yA-VfZ">
+                        <rect key="frame" x="93" y="8" width="110" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="mpX-R3-gH3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-11-11 12：12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhE-dK-cck">
+                        <rect key="frame" x="211" y="7" width="101" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="4Gq-cA-KHL"/>
+                            <constraint firstAttribute="width" constant="101" id="9DL-D5-nFE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="山东建筑大学有战斗机、火车餐厅、317公交车，雪山上还有小破船。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyc-81-3XD">
+                        <rect key="frame" x="36" y="36" width="276" height="35"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="nyc-81-3XD" firstAttribute="top" secondItem="TQF-yA-VfZ" secondAttribute="bottom" constant="7" id="0R1-ng-Az0"/>
+                    <constraint firstItem="TQF-yA-VfZ" firstAttribute="leading" secondItem="CcX-Tt-yuK" secondAttribute="trailing" constant="8" id="4ls-Xn-AGL"/>
+                    <constraint firstItem="33V-Hu-HJH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="76h-pP-mRJ"/>
+                    <constraint firstItem="nyc-81-3XD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="36" id="H6n-kj-oRv"/>
+                    <constraint firstItem="zhE-dK-cck" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="X94-L8-ATG"/>
+                    <constraint firstItem="CcX-Tt-yuK" firstAttribute="leading" secondItem="33V-Hu-HJH" secondAttribute="trailing" constant="8" id="XDQ-1U-PvY"/>
+                    <constraint firstAttribute="bottom" secondItem="nyc-81-3XD" secondAttribute="bottom" constant="8" id="XVA-eH-Gqe"/>
+                    <constraint firstAttribute="trailing" secondItem="nyc-81-3XD" secondAttribute="trailing" constant="8" id="kG8-aG-5S4"/>
+                    <constraint firstAttribute="trailing" secondItem="zhE-dK-cck" secondAttribute="trailing" constant="8" id="o4D-Lc-Z9a"/>
+                    <constraint firstItem="zhE-dK-cck" firstAttribute="leading" secondItem="TQF-yA-VfZ" secondAttribute="trailing" constant="8" id="oUl-In-mdO"/>
+                    <constraint firstItem="CcX-Tt-yuK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="pXw-tY-yrd"/>
+                    <constraint firstItem="33V-Hu-HJH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="r2x-hh-bmW"/>
+                    <constraint firstItem="TQF-yA-VfZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="yZk-Yr-DIZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="headImageView" destination="33V-Hu-HJH" id="0qN-vq-ckB"/>
+                <outlet property="nameLbl" destination="CcX-Tt-yuK" id="MbV-V4-EG0"/>
+                <outlet property="textLbl" destination="nyc-81-3XD" id="7lW-DP-4ey"/>
+                <outlet property="timeLbl" destination="zhE-dK-cck" id="iy1-77-Obf"/>
+                <outlet property="universityLbl" destination="TQF-yA-VfZ" id="fgz-zn-JGP"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="iconroundcell.png" width="50" height="50"/>
+    </resources>
+</document>

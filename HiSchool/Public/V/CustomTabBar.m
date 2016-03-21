@@ -31,15 +31,14 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
+    CGFloat buttonSpace = (self.bounds.size.width - 5*self.bounds.size.height)/6;
+    CGFloat buttonWidth = self.bounds.size.height;
     NSInteger count = self.subviews.count;
     for (int i = 0; i <count; i++) {
         UIButton *btn = self.subviews[i];
-        CGFloat x = i * self.bounds.size.width/count;
-        CGFloat y = 0;
-        CGFloat width = self.bounds.size.width/count;
+        CGFloat x = i *(buttonWidth  + buttonSpace) + buttonSpace;
         CGFloat height = self.bounds.size.height;
-        btn.frame = CGRectMake(x, y, width, height);
+        btn.frame = CGRectMake(x, 0, buttonWidth, height);
     }
 }
 

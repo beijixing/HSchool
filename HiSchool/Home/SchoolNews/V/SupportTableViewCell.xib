@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Mvk-Pe-5nG" customClass="SupportTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mvk-Pe-5nG" id="rNB-Fa-aaT">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconroundcell.png" translatesAutoresizingMaskIntoConstraints="NO" id="3QS-tZ-Nx0">
+                        <rect key="frame" x="27" y="8" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="eqb-bp-Izt"/>
+                            <constraint firstAttribute="width" constant="20" id="nYC-Cl-DNp"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="建大才子" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HzO-zd-eFx">
+                        <rect key="frame" x="55" y="8" width="49" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="49" id="39E-O5-gUI"/>
+                            <constraint firstAttribute="height" constant="21" id="aOc-v8-lt7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="山东商业职业技术学院" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNf-Xe-lhY">
+                        <rect key="frame" x="112" y="8" width="91" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="ZHI-qB-eiL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-11-11 12：12" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5n-Wq-H8T">
+                        <rect key="frame" x="211" y="7" width="101" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="YaJ-IY-W1W"/>
+                            <constraint firstAttribute="width" constant="101" id="cRm-Az-RWf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="山东建筑大学有战斗机、火车餐厅、317公交车，雪山上还有小破船。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5W-O9-sms">
+                        <rect key="frame" x="55" y="36" width="257" height="35"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="support.png" translatesAutoresizingMaskIntoConstraints="NO" id="21j-dd-6cu">
+                        <rect key="frame" x="0.0" y="9" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="hx5-hV-GVN"/>
+                            <constraint firstAttribute="height" constant="20" id="qbn-Zc-CP8"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="u2o-I1-63M"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="wfq-nC-2k7"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="f5W-O9-sms" firstAttribute="leading" secondItem="rNB-Fa-aaT" secondAttribute="leading" constant="55" id="1cS-4d-uES"/>
+                    <constraint firstItem="q5n-Wq-H8T" firstAttribute="leading" secondItem="vNf-Xe-lhY" secondAttribute="trailing" constant="8" id="ELo-G9-nvA"/>
+                    <constraint firstItem="3QS-tZ-Nx0" firstAttribute="leading" secondItem="rNB-Fa-aaT" secondAttribute="leading" constant="27" id="Mv3-A6-E2a"/>
+                    <constraint firstAttribute="trailing" secondItem="q5n-Wq-H8T" secondAttribute="trailing" constant="8" id="Poh-IC-Maw"/>
+                    <constraint firstAttribute="bottom" secondItem="f5W-O9-sms" secondAttribute="bottom" constant="8" id="QEw-9Z-zfw"/>
+                    <constraint firstItem="vNf-Xe-lhY" firstAttribute="leading" secondItem="HzO-zd-eFx" secondAttribute="trailing" constant="8" id="TBm-c4-s9D"/>
+                    <constraint firstItem="21j-dd-6cu" firstAttribute="leading" secondItem="rNB-Fa-aaT" secondAttribute="leading" id="ZBJ-u1-6KI"/>
+                    <constraint firstItem="HzO-zd-eFx" firstAttribute="top" secondItem="rNB-Fa-aaT" secondAttribute="top" constant="8" id="bSU-Gp-qfK"/>
+                    <constraint firstItem="21j-dd-6cu" firstAttribute="top" secondItem="rNB-Fa-aaT" secondAttribute="top" constant="9" id="hVQ-Ec-hTS"/>
+                    <constraint firstAttribute="trailing" secondItem="f5W-O9-sms" secondAttribute="trailing" constant="8" id="l49-Qj-ceE"/>
+                    <constraint firstItem="f5W-O9-sms" firstAttribute="top" secondItem="vNf-Xe-lhY" secondAttribute="bottom" constant="7" id="lpq-XM-fzC"/>
+                    <constraint firstItem="3QS-tZ-Nx0" firstAttribute="top" secondItem="rNB-Fa-aaT" secondAttribute="top" constant="8" id="m5v-W9-15b"/>
+                    <constraint firstItem="vNf-Xe-lhY" firstAttribute="top" secondItem="rNB-Fa-aaT" secondAttribute="top" constant="8" id="pZ1-ea-Xve"/>
+                    <constraint firstItem="q5n-Wq-H8T" firstAttribute="top" secondItem="rNB-Fa-aaT" secondAttribute="top" constant="7" id="sIJ-av-APE"/>
+                    <constraint firstItem="HzO-zd-eFx" firstAttribute="leading" secondItem="3QS-tZ-Nx0" secondAttribute="trailing" constant="8" id="ytu-4T-4U9"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="headImageView" destination="3QS-tZ-Nx0" id="qSS-9S-i3W"/>
+                <outlet property="nameLbl" destination="HzO-zd-eFx" id="Iez-9V-AkK"/>
+                <outlet property="textLbl" destination="f5W-O9-sms" id="hFl-PD-D8W"/>
+                <outlet property="timeLbl" destination="q5n-Wq-H8T" id="EZS-Sg-OPz"/>
+                <outlet property="universityLbl" destination="vNf-Xe-lhY" id="RGc-pO-liZ"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="iconroundcell.png" width="50" height="50"/>
+        <image name="support.png" width="50" height="50"/>
+    </resources>
+</document>

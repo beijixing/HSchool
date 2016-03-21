@@ -9,19 +9,28 @@
 #import "UserHelperVC.h"
 
 @interface UserHelperVC ()
-
+{
+    UITextView *_helperTextView;
+}
 @end
 
 @implementation UserHelperVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configNavigationItemTitleView];
+    [self configNavigationItemWithTitle:@"使用帮助"];
     [self clearNavigationItemLeftBarButton];
     
     [self addRightItemsBackEventNotification];
     self.isRightViewController = YES;
-    self.view.backgroundColor = [UIColor redColor];
+    
+    [self configHelperTextView];
+}
+
+- (void)configHelperTextView {
+    _helperTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 -49)];
+    
+    [self.view addSubview:_helperTextView];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,16 +7,31 @@
 //
 //热点论战详情
 #import "HotspotsDetailViewController.h"
+#import "SupportTableViewCell.h"
+#import "OpposeTableViewCell.h"
+#import "UMSocial.h"
 
-@interface HotspotsDetailViewController ()<UITextViewDelegate>
+#import "ReportViewController.h"
+@interface HotspotsDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
 {
-    UIImageView *_headView;
-    UILabel *_numLabel;
+    NSMutableArray *_dataSource;
+    UITableView *_tableView;
     
-    UITextView *_commentView;   //评论输入
-    UIButton *_supportBtn;  //支持按钮
-    UIButton *_cancelBtn;  //取消按钮
-    UIButton *_opposeBtn;   //反对按钮
+    UIView *_headView;      //tableView的头视图
+    UILabel *_titleLbl;     //标题
+    UILabel *_personLbl;    //记者
+    UILabel *_timeLbl;      //时间
+    UIImageView *_imageView;    //视频或图片
+    //    UITextView *_newsView;      //新闻内容
+    UILabel *_newsLabel;
+    
+    UILabel *_backLabel;
+    UIButton *_supportBtn;      //赞成
+    UILabel *_supportLbl;
+    UIButton *_opposeBtn;       //反对
+    UILabel *_opposeLbl;
+    UITextField *_commentView;   //评论输入
+    UIButton *_publishBtn;  //发布按钮
 }
 @end
 
@@ -25,8 +40,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithRed:0.94f green:0.94f blue:0.96f alpha:1.00f];
-    self.navigationController.navigationBarHidden = YES;
+    self.view.backgroundColor = [UIColor whiteColor];
+    //导航栏时间标题视图
+    [self configNavigationItemWithTitle:@"校园爆料"];
+    
+    _dataSource = [[NSMutableArray alloc]init];
+    [self loadData];
     [self createUI];
     
     //注册通知,监听键盘弹出事件
@@ -34,76 +53,237 @@
     //注册通知,监听键盘消失事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHidden) name:UIKeyboardDidHideNotification object:nil];
 }
--(void)createUI{
-    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, SCREEN_HEIGHT-49-40)];
-    scrollView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:scrollView];
-    if (IS_IPHONE_4_OR_LESS){
-        scrollView.contentSize = CGSizeMake(320, 568);
-    }
-    
-    _headView = [[UIImageView alloc]initWithFrame:[self createFrameWithX:10 andY:30 andWidth:300 andHeight:150]];
-    _headView.backgroundColor = [UIColor blueColor];
-    _headView.layer.cornerRadius = 10;
-    [scrollView addSubview:_headView];
-    
-    _numLabel = [[UILabel alloc]initWithFrame:[self createFrameWithX:10 andY:190 andWidth:300 andHeight:30]];
-    _numLabel.layer.cornerRadius = 10.0;
-    _numLabel.layer.borderWidth = 1.0;
-    _numLabel.layer.borderColor = [UIColor blackColor].CGColor;
-    _numLabel.text = @"正方人数：10人  反方人数：10人";
-    _numLabel.textAlignment = NSTextAlignmentLeft;
-    [scrollView addSubview:_numLabel];
-    
-    
-    //评论、分享、收藏、举报
-    for (int i = 0; i<=3; i++) {
-//        UIButton *btn = [[UIButton alloc]initWithFrame:[self createFrameWithX:70*i+40 andY:484 andWidth:30 andHeight:30]];
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(70*i+40, SCREEN_HEIGHT-49-35, 30, 30)];
-        btn.tag = 100+i;
-        [btn setImage:[UIImage imageNamed:@"moren"] forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(sharePress:) forControlEvents:UIControlEventTouchUpInside];
-//        [scrollView addSubview:btn];
-        [self.view addSubview:btn];
-    }
-    
+-(void)loadData{
+    DLog(@"请求数据");
 }
+-(void)createUI{
+    
+    _headView = [[UIView alloc]init];
+    [self.view addSubview:_headView];
+    
+    _titleLbl = [[UILabel alloc]initWithFrame:[self createFrameWithX:10 andY:10 andWidth:300 andHeight:40]];
+    _titleLbl.text = @"春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知";
+    _titleLbl.font = [UIFont systemFontOfSize:15];
+    _titleLbl.textAlignment = NSTextAlignmentCenter;
+    _titleLbl.numberOfLines=0;
+    _titleLbl.textColor = [UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:1];
+    [_headView addSubview:_titleLbl];
+    
+    _personLbl = [[UILabel alloc]initWithFrame:[self createFrameWithX:10 andY:50 andWidth:140 andHeight:20]];
+    _personLbl.text = @"发布人：谁谁谁谁";
+    _personLbl.textColor = [UIColor colorWithRed:164.0/255 green:164.0/255 blue:164.0/255 alpha:1];
+    _personLbl.font = [UIFont systemFontOfSize:11];
+    _personLbl.textAlignment = NSTextAlignmentRight;
+    [_headView addSubview:_personLbl];
+    
+    _timeLbl = [[UILabel alloc]initWithFrame:[self createFrameWithX:170 andY:50 andWidth:140 andHeight:20]];
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *time = [formatter stringFromDate:date];
+    _timeLbl.text = [NSString stringWithFormat:@"%@",time];
+    _timeLbl.textColor = [UIColor colorWithRed:164.0/255 green:164.0/255 blue:164.0/255 alpha:1];
+    _timeLbl.font = [UIFont systemFontOfSize:11];
+    _timeLbl.textAlignment = NSTextAlignmentLeft;
+    [_headView addSubview:_timeLbl];
+    
+    //视频或图片
+    _imageView = [[UIImageView alloc]initWithFrame:[self createFrameWithX:10 andY:75 andWidth:300 andHeight:150]];
+    _imageView.image = [UIImage imageNamed:@"moren"];
+    [_headView addSubview:_imageView];
+    
+    
+    //新闻内容
+    //    _newsView = [[UITextView alloc]initWithFrame:[self createFrameWithX:10 andY:230 andWidth:300 andHeight:199]];
+    //    _newsView.editable = NO;
+    //    DLog(@"----%f",_newsView.frame.origin.y+_newsView.frame.size.height);
+    //    // UITextView 边框
+    //    _newsView.layer.borderColor = [UIColor redColor].CGColor;
+    //    _newsView.layer.borderWidth = 1.0;
+    //    _newsView.layer.cornerRadius = 5.0;
+    //    _newsView.text = @"春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知春江水暖鸭先知";
+    //    [scrollView addSubview:_newsView];
+    //
+    //    scrollView.frame = CGRectMake(0,0,SCREEN_WIDTH, _newsView.frame.origin.y+_newsView.frame.size.height);
+    
+    //新闻内容
+    _newsLabel = [[UILabel alloc]initWithFrame:[self createFrameWithX:10 andY:230 andWidth:300 andHeight:100]];
+    _newsLabel.numberOfLines = 0;
+    _newsLabel.font = [UIFont systemFontOfSize:13];
+    _newsLabel.text = @"将进酒-李白    君不见黄河之水天上来，奔流到海不复回。君不见高堂明镜悲白发，朝如青丝暮成雪。人生得意须尽欢，莫使金樽空对月。天生我材必有用，千金散尽还复来。烹羊宰牛且为乐，会须一饮三百杯。岑夫子，丹丘生，将进酒，杯莫停。与君歌一曲，请君为我倾耳听。钟鼓馔玉不足贵，但愿长醉不复醒。古来圣贤皆寂寞，惟有饮者留其名。陈王昔时宴平乐，斗酒十千恣欢谑。主人何为言少钱，径须沽取对君酌。五花马，千金裘，呼儿将出换美酒，与尔同销万古愁";
+    //自适应label
+    CGSize size = [_newsLabel.text sizeWithFont:_newsLabel.font constrainedToSize:CGSizeMake(_newsLabel.frame.size.width, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+    //根据计算结果重新设置UILabel的尺寸
+    //    [_newsLabel setFrame:CGRectMake(20, 100, self.view.frame.size.width-40, size.height)];
+    [_newsLabel setFrame:[self createFrameWithX:10 andY:230 andWidth:300 andHeight:size.height]];
+    [_headView addSubview:_newsLabel];
+    _headView.frame = CGRectMake(0,0,SCREEN_WIDTH, _newsLabel.frame.origin.y+_newsLabel.frame.size.height+60);
+    
+    UIImageView *cometosay = [[UIImageView alloc]initWithFrame:[self createFrameWithX:0 andY:_newsLabel.frame.origin.y+_newsLabel.frame.size.height+10 andWidth:100 andHeight:30]];
+    cometosay.image = [UIImage imageNamed:@"cometosay"];
+    [_headView addSubview:cometosay];
+    UILabel *newComment = [[UILabel alloc]initWithFrame:[self createFrameWithX:0 andY:_newsLabel.frame.origin.y+_newsLabel.frame.size.height+40 andWidth:200 andHeight:20]];
+    newComment.text = @"正方：2567  反方：25678";
+    newComment.font = [UIFont systemFontOfSize:11];
+    newComment.textAlignment = NSTextAlignmentCenter;
+    newComment.textColor = [UIColor colorWithRed:0.3922 green:0.3922 blue:0.3922 alpha:1.0];
+    [_headView addSubview:newComment];
+    
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, SCREEN_HEIGHT-64-49) style:UITableViewStylePlain];
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    [self.view addSubview:_tableView];
+    _tableView.tableHeaderView = _headView;
+    
+    UIImageView *backImage = [[UIImageView alloc]initWithFrame:CGRectMake(20, SCREEN_HEIGHT-49-45-64, SCREEN_WIDTH-40, 40)];
+    backImage.image = [UIImage imageNamed:@"grayback"];
+    [self.view addSubview:backImage];
+    
+    
+    NSArray *imageName = @[@"collection",@"share",@"report"];
+    for (int i = 0; i<4; i++) {
+        if (i==0) {
+            //评论
+            UIButton *commentBtn = [[UIButton alloc]initWithFrame:CGRectMake(20+backImage.frame.size.width/12, backImage.frame.origin.y+5, backImage.frame.size.width/12*4, 30)];
+            commentBtn.layer.borderColor = [UIColor colorWithRed:0.64f green:0.64f blue:0.64f alpha:1.00f].CGColor;
+            commentBtn.layer.borderWidth = 1.0;
+            [commentBtn setTitle:@"我来说两句" forState:UIControlStateNormal];
+            [commentBtn setTitleColor:[UIColor colorWithRed:0.64f green:0.64f blue:0.64f alpha:1.00f] forState:UIControlStateNormal];
+            commentBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+            commentBtn.tag = 100+i;
+            [commentBtn addTarget:self action:@selector(sharePress:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:commentBtn];
+        }else{
+            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(20+backImage.frame.size.width/12*(6+(i-1)*2), backImage.frame.origin.y+10, backImage.frame.size.width/12, 20)];
+            [btn setBackgroundImage:[UIImage imageNamed:imageName[i-1]] forState:UIControlStateNormal];
+            [btn addTarget:self action:@selector(sharePress:) forControlEvents:UIControlEventTouchUpInside];
+            btn.tag = 100+i;
+            [self.view addSubview:btn];
+        }
+    }
+    
+    //点击跳到顶部
+    UIButton *topBtn = [[UIButton alloc]initWithFrame:[self createFrameWithX:SCREEN_WIDTH-50 andY:backImage.frame.origin.y-40 andWidth:30 andHeight:30]];
+    [topBtn setBackgroundImage:[UIImage imageNamed:@"click_top"] forState:UIControlStateNormal];
+    [topBtn addTarget:self action:@selector(clickToTop:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:topBtn];
+}
+
+#pragma mark - tableView代理方法
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 30;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *string = @"string";
+    if (indexPath.row%2==0) {
+        SupportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:string];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"SupportTableViewCell" owner:self options:nil]lastObject];
+        }
+        return cell;
+    }else{
+        OpposeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:string];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"OpposeTableViewCell" owner:self options:nil]lastObject];
+        }
+        return cell;
+    }
+
+    return nil;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 80;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+
+
+
+#pragma mark - 分享收藏按钮点击方法
 -(void)sharePress:(UIButton *)sender{
     if (sender.tag == 100) {
         DLog(@"评论");
-        _commentView = [[UITextView alloc]init];
-        _commentView.tag = 201;
-        _commentView.delegate = self;
+        
+        _backLabel = [[UILabel alloc]init];
+        _backLabel.tag = 201;
+        _backLabel.backgroundColor = [UIColor colorWithRed:0.95f green:0.96f blue:0.96f alpha:1.00f];
+        [self.view addSubview:_backLabel];
+        
+        _supportBtn = [[UIButton alloc]init];
+        [_supportBtn setBackgroundImage:[UIImage imageNamed:@"supportbefore"] forState:UIControlStateNormal];
+        _supportBtn.tag = 301;
+        [_supportBtn addTarget:self action:@selector(supportOrOpposeClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_supportBtn];
+        _supportLbl = [[UILabel alloc]init];
+        _supportLbl.text = @"赞成";
+        _supportLbl.textColor = [UIColor colorWithRed:0.56f green:0.56f blue:0.57f alpha:1.00f];
+        _supportLbl.tag = 303;
+        [self.view addSubview:_supportLbl];
+        
+        
+        _opposeBtn = [[UIButton alloc]init];
+        [_opposeBtn setBackgroundImage:[UIImage imageNamed:@"opposebefore"] forState:UIControlStateNormal];
+        _opposeBtn.tag = 302;
+        [_opposeBtn addTarget:self action:@selector(supportOrOpposeClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_opposeBtn];
+        _opposeLbl = [[UILabel alloc]init];
+        _opposeLbl.text = @"反对";
+        _opposeLbl.textColor = [UIColor colorWithRed:0.56f green:0.56f blue:0.57f alpha:1.00f];
+        _opposeLbl.tag = 303;
+        [self.view addSubview:_opposeLbl];
+        
+        _commentView = [[UITextField alloc]init];
+        _commentView.tag = 202;
+        _commentView.layer.borderWidth = 1.0;
+        _commentView.layer.borderColor = [UIColor colorWithRed:0.3922 green:0.3922 blue:0.3922 alpha:1.0].CGColor;
+        _commentView.layer.cornerRadius = 5.0;
         [self.view addSubview:_commentView];
         
-        UILabel *commentLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 5, 100, 20)];
-        commentLabel.tag = 999;
-        commentLabel.text = @"请输入评论";
-        commentLabel.font = [UIFont italicSystemFontOfSize:15];
-        commentLabel.textColor = [UIColor colorWithRed:166.0/255 green:166.0/255 blue:166.0/255 alpha:1];
-        [_commentView addSubview:commentLabel];
-        
-//        _publishBtn = [[UIButton alloc]init];
-//        _publishBtn.tag = 202;
-//        _publishBtn.backgroundColor = [UIColor grayColor];
-//        [_publishBtn setTitle:@"发布" forState:UIControlStateNormal];
-//        [_publishBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [_publishBtn setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-//        [_publishBtn addTarget:self action:@selector(publishPressed:) forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:_publishBtn];
-
-        
-        
+        _publishBtn = [[UIButton alloc]init];
+        _publishBtn.tag = 203;
+        _publishBtn.layer.cornerRadius = 5.0;
+        _publishBtn.layer.borderColor = [UIColor colorWithRed:0.3922 green:0.3922 blue:0.3922 alpha:1.0].CGColor;
+        _publishBtn.layer.borderWidth = 1.0;
+        _publishBtn.backgroundColor = [UIColor whiteColor];
+        [_publishBtn setTitle:@"发布" forState:UIControlStateNormal];
+        [_publishBtn setTitleColor:[UIColor colorWithRed:0.3922 green:0.3922 blue:0.3922 alpha:1.0] forState:UIControlStateNormal];
+        [_publishBtn setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+        [_publishBtn addTarget:self action:@selector(publishPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_publishBtn];
         //评论第一相应
         [_commentView becomeFirstResponder];
         
         
     }else if (sender.tag == 101){
-        DLog(@"分享");
-    }else if (sender.tag == 102){
         DLog(@"收藏");
+    }else if (sender.tag == 102){
+        DLog(@"分享");
+        //        self.tabBarController.tabBar.hidden = YES;
+        //        UIImageView *shareView = [[UIImageView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-200-64, SCREEN_WIDTH, 200)];
+        //        shareView.backgroundColor = [UIColor whiteColor];
+        //        [self.view addSubview:shareView];
+        //
+        //        UILabel *titleLbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 20, 60, 20)];
+        //        titleLbl.text = @"分享到";
+        //        titleLbl.textColor = [UIColor colorWithRed:0.3922 green:0.3922 blue:0.3922 alpha:1.0];
+        //        [shareView addSubview:titleLbl];
+        
+        [UMSocialSnsService presentSnsIconSheetView:self
+                                             appKey:@"5690674767e58ee2e6000f7e"
+                                          shareText:@"你要分享的文字"
+                                         shareImage:[UIImage imageNamed:@"moren.png"]
+                                    shareToSnsNames:[NSArray arrayWithObjects:
+                                                     UMShareToQQ,UMShareToSina,UMShareToWechatSession,nil]
+                                           delegate:nil];
+        [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://www.baidu.com";
+        
+        
     }else{
         DLog(@"举报");
+        ReportViewController *report = [[ReportViewController alloc]init];
+        [self.navigationController pushViewController:report animated:YES];
     }
 }
 #pragma mark - 键盘出现时
@@ -117,24 +297,16 @@
     int height = keyboardRect.size.height;
     DLog(@"%d",height);
     
+    //    [UIView animateWithDuration:0.2 animations:^{
+    _backLabel.frame = CGRectMake(0, SCREEN_HEIGHT-height-49-60-40, SCREEN_WIDTH, 100);
+    _supportBtn.frame = CGRectMake(60, SCREEN_HEIGHT-height-49-60-35, 30, 30);
+    _supportLbl.frame = CGRectMake(90, SCREEN_HEIGHT-height-49-60-35, 40, 30);
+    _opposeBtn.frame = CGRectMake(SCREEN_WIDTH-130, SCREEN_HEIGHT-height-49-60-35, 30, 30);
+    _opposeLbl.frame = CGRectMake(SCREEN_WIDTH-100, SCREEN_HEIGHT-height-49-60-35, 40, 30);
 
-    _commentView.frame=CGRectMake(5, SCREEN_HEIGHT-height-190, SCREEN_WIDTH-10, 150);
-    _commentView.layer.borderColor = [UIColor blueColor].CGColor;
-    _commentView.layer.borderWidth = 1.0;
-        
-    NSArray *titleArr = @[@"支持",@"取消",@"反对"];
-    for (int i=0; i<3; i++) {
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(((SCREEN_WIDTH-150)/4+50)*i+(SCREEN_WIDTH-150)/4, SCREEN_HEIGHT-height-30, 50, 20)];
-        btn.layer.borderColor = [UIColor blueColor].CGColor;
-        btn.layer.borderWidth = 1.0;
-        btn.layer.cornerRadius = 10;
-        [btn setTitle:titleArr[i] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-        [btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
-        btn.tag = 202+i;
-        [self.view addSubview:btn];
-    }
+    _commentView.frame=CGRectMake(5, SCREEN_HEIGHT-height-49-55, SCREEN_WIDTH-70, 30);
+    _publishBtn.frame = CGRectMake(SCREEN_WIDTH-60, SCREEN_HEIGHT-height-49-55, 50, 30);
+    //   } completion:nil];
 }
 
 #pragma mark - 键盘消失时
@@ -145,27 +317,46 @@
     //        _zlTableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, _zlTableView.frame.size.height);
     //    } completion:nil];
     for (UIView *view in self.view.subviews) {
-        if (view.tag == 201 || view.tag==202|| view.tag==203|| view.tag==204) {
+        if (view.tag == 201 || view.tag==202 || view.tag==203|| view.tag==301|| view.tag==302|| view.tag==303|| view.tag==304) {
             [view removeFromSuperview];
         }
     }
 }
+#pragma mark - 赞成或反对按钮方法
+-(void)supportOrOpposeClicked:(UIButton *)sender{
+    UIButton *button1 = [self.view viewWithTag:301];
+    UIButton *button2 = [self.view viewWithTag:302];
+    if (sender.tag == 301) {
+        [button1 setBackgroundImage:[UIImage imageNamed:@"supportafter"] forState:UIControlStateNormal];
+        [button2 setBackgroundImage:[UIImage imageNamed:@"opposebefore"] forState:UIControlStateNormal];
+        DLog(@"赞成！");
+    }else{
+        [button1 setBackgroundImage:[UIImage imageNamed:@"supportbefore"] forState:UIControlStateNormal];
+        [button2 setBackgroundImage:[UIImage imageNamed:@"opposeafter"] forState:UIControlStateNormal];
+        DLog(@"反对！");
+    }
+}
 
--(void)btnPressed:(UIButton *)sender{
+#pragma mark - 评论发布
+-(void)publishPressed:(UIButton *)sender{
+    //如果发布成功，则消失
     [self.view endEditing:YES];
     for (UIView *view in self.view.subviews) {
-        if (view.tag == 201 || view.tag==202|| view.tag==203|| view.tag==204) {
+        if (view.tag == 201 || view.tag==202 || view.tag==202|| view.tag==301|| view.tag==302|| view.tag==303|| view.tag==304) {
             [view removeFromSuperview];
         }
     }
     
 }
 
--(void)textViewDidChange:(UITextView *)textView{
-    if (textView.text.length != 0) {
-        UILabel *label = [self.view viewWithTag:999];
-        label.text = @"";
-    }
+
+
+
+
+
+#pragma mark - 点击跳到顶部
+-(void)clickToTop:(UIButton *)sender{
+    [_tableView setContentOffset:CGPointMake(0,0) animated:YES];
 }
 
 

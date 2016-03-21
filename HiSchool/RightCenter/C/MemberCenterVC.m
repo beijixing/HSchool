@@ -39,4 +39,21 @@
 }
 */
 
+- (IBAction)headIconButtonClick:(UIButton *)sender {
+}
+- (IBAction)saveUserNameBtnClick:(UIButton *)sender {
+}
+- (IBAction)saveSchoolBtnClick:(UIButton *)sender {
+}
+- (IBAction)saveEntranceBtnClick:(UIButton *)sender {
+}
+- (IBAction)saveMajorBtnClick:(UIButton *)sender {
+}
+
+- (IBAction)messageSwitchValueChanged:(UISwitch *)sender {
+}
+- (IBAction)changeEmailBtnClick:(UIButton *)sender {
+}
+- (IBAction)updateBtnClick:(UIButton *)sender {
+}
 @end

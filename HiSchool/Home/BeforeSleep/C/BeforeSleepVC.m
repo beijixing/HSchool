@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor redColor];
-    [self configNavigationItemTitleView];
+    [self configNavigationItemWithTitle:@"熄灯时刻"];
     [self addHomeItemsBackEventNotification];
     [self clearNavigationItemLeftBarButton];
 }

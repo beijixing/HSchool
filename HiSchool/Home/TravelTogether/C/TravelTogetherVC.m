@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configNavigationItemTitleView];
+    [self configNavigationItemWithTitle:@"一路同行"];
     [self addHomeItemsBackEventNotification];
     [self clearNavigationItemLeftBarButton];
     

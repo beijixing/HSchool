@@ -63,10 +63,13 @@
 
 -(void)addScrollImages:(NSArray *)array
 {
+    if (!array) {
+        return;
+    }
     _imagesArray = [[NSMutableArray alloc] initWithArray: array];
     if (_imagesArray.count == 0) {
         UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        bgImageView.image = [UIImage imageNamed:@"beijingtu"];
+        bgImageView.image = [UIImage imageNamed:@"moren"];
         [self addSubview:bgImageView];
     }
     

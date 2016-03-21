@@ -17,7 +17,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
+    self.adView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 150*self.scaleRatio);
+    [self.adView addScrollImages:@[]];
+    
+    [self configNavigationItemWithTitle:@"个人中心"];
+    self.textFieldBgImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
     self.feedBackReportTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.feedBackReportTable registerNib:[UINib nibWithNibName:@"FeedBackCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"FeedBackCell"];
@@ -35,7 +40,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44*self.scaleRatio;
+    return 80;
 }
 
 - (void)didReceiveMemoryWarning {

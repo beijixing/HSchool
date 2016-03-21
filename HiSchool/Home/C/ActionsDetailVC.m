@@ -7,16 +7,30 @@
 //
 
 #import "ActionsDetailVC.h"
+#import "CirculateView.h"
 
 @interface ActionsDetailVC ()
-
+{
+    CirculateView *_adView;
+}
 @end
 
 @implementation ActionsDetailVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    [self configNavigationItemWithTitle:@"活动"];
+    [self clearNavigationItemLeftBarButton];
+    [self addHomeItemsBackEventNotification];
+    [self setupAdView];
+}
+
+- (void)setupAdView {
+    _adView = [[CirculateView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150*self.scaleRatio)];
+    NSArray *arr = @[];
+    [_adView addScrollImages:arr];
+    [self.view addSubview:_adView];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AddNewFeedBackVC : BaseViewController
+@property (strong, nonatomic) IBOutlet UITextField *titleTF;
+@property (strong, nonatomic) IBOutlet UITextView *contentTextView;
+- (IBAction)addAdditionalItemBtnClick:(UIButton *)sender;
+- (IBAction)commitButtonClick:(UIButton *)sender;
 
 @end

@@ -21,6 +21,7 @@
 #import "TravelTogetherVC.h"
 #import "BeforeSleepVC.h"
 #import "MJRefresh.h"
+#import "ActionsDetailVC.h"
 
 @interface HomeVC ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -59,7 +60,7 @@
 - (void)configAdView {
     _adView = [[CirculateView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150*self.scaleRatio)];
     [_headerView addSubview:_adView];
-    NSArray *arr = @[@"a",@"b", @"c", @"d"];
+    NSArray *arr = @[];
     [_adView addScrollImages:arr];
 }
 
@@ -167,7 +168,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
+    return 60;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -191,6 +192,11 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ActionsDetailVC *actionVc = [[ActionsDetailVC alloc] init];
+    [self.navigationController pushViewController:actionVc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

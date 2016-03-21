@@ -26,7 +26,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     //导航栏时间标题视图
-    [self configNavigationItemTitleView];
+    [self configNavigationItemWithTitle:@"校园爆料"];
     //tabBar返回
     [self addHomeItemsBackEventNotification];
     [self clearNavigationItemLeftBarButton];
@@ -49,7 +49,7 @@
     
     
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 42, SCREEN_WIDTH/3, 2)];
-    _scrollView.backgroundColor = [UIColor blueColor];
+    _scrollView.backgroundColor = [UIColor colorWithRed:0.27f green:0.53f blue:0.95f alpha:1.00f];
     _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 0);
     [self.view addSubview:_scrollView];
     
@@ -65,7 +65,7 @@
         btn.tag = 100+i;
         if (i == 0) {
             btn.selected = YES;
-            btn.backgroundColor = [UIColor blueColor];
+            btn.backgroundColor = [UIColor colorWithRed:0.27f green:0.53f blue:0.95f alpha:1.00f];
                         
         }
         
@@ -113,7 +113,7 @@
     
     if (sender.tag == 100) {
         sender.selected = YES;
-        sender.backgroundColor = [UIColor blueColor];
+        sender.backgroundColor = [UIColor colorWithRed:0.27f green:0.53f blue:0.95f alpha:1.00f];
         _scrollView.contentOffset = CGPointMake(0, 0);
         DLog(@"--------第一个%f",_scrollView.contentOffset.x);
         //将新鲜事儿放在最上面
@@ -122,7 +122,7 @@
         
     }else if (sender.tag == 101){
         sender.selected = YES;
-        sender.backgroundColor = [UIColor blueColor];
+        sender.backgroundColor = [UIColor colorWithRed:0.27f green:0.53f blue:0.95f alpha:1.00f];
         _scrollView.contentOffset = CGPointMake(SCREEN_WIDTH/3, 0);
         DLog(@"--------第二个%f",_scrollView.contentOffset.x);
         
@@ -132,7 +132,7 @@
         [self.view bringSubviewToFront:view];
     }else{
         sender.selected = YES;
-        sender.backgroundColor = [UIColor blueColor];
+        sender.backgroundColor = [UIColor colorWithRed:0.27f green:0.53f blue:0.95f alpha:1.00f];
         _scrollView.contentOffset = CGPointMake(SCREEN_WIDTH/3*2, 0);
         DLog(@"--------第三个%f",_scrollView.contentOffset.x);
         //将社团公告放在最上面

@@ -16,8 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
     self.isRightViewController = YES;
+    [self configNavigationItemWithTitle:@"个人中心"];
+    [self clearNavigationItemLeftBarButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,4 +36,9 @@
 }
 */
 
+- (IBAction)addAdditionalItemBtnClick:(UIButton *)sender {
+}
+
+- (IBAction)commitButtonClick:(UIButton *)sender {
+}
 @end

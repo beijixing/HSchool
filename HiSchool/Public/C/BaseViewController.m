@@ -35,12 +35,15 @@
 
 - (void)configNavigationItemTitleView {
     NavigationBarTitleView *titleView = [[NavigationBarTitleView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+    titleView.titleImage.image = [UIImage imageNamed:@"hiSchlool"];
+    titleView.titleLB.hidden = YES;
     self.navigationItem.titleView = titleView;
 }
 
 - (void)configNavigationItemWithTitle:(NSString *)title {
     NavigationBarTitleView *titleView = [[NavigationBarTitleView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
-    titleView.timeLB.text = title;
+    titleView.titleLB.text = title;
+    titleView.titleImage.hidden = YES;
     self.navigationItem.titleView = titleView;
 }
 

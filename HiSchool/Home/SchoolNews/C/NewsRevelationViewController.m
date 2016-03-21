@@ -40,13 +40,12 @@
     [self.view addSubview:headView];
 
     _headScrollView = [[UIImageView alloc]initWithFrame:[self createFrameWithX:0 andY:0 andWidth:320 andHeight:150]];
-    _headScrollView.image = [UIImage imageNamed:@"zhutu"];
-//    _headScrollView.layer.cornerRadius = 10;
+    _headScrollView.image = [UIImage imageNamed:@"moren"];
     [headView addSubview:_headScrollView];
     
     
     UILabel *searchLbl = [[UILabel alloc]initWithFrame:[self createFrameWithX:5 andY:160 andWidth:190 andHeight:40]];
-    searchLbl.layer.borderColor = [UIColor colorWithRed:0.3922 green:0.3922 blue:0.3922 alpha:1.0].CGColor;
+    searchLbl.layer.borderColor = [UIColor colorWithRed:0.74f green:0.74f blue:0.74f alpha:1.00f].CGColor;
     searchLbl.layer.borderWidth = 1.0;
     searchLbl.layer.cornerRadius = 10.0;
     [headView addSubview:searchLbl];
@@ -61,7 +60,7 @@
     placeLbl.tag = 998;
     placeLbl.text = @"学校名/作者名/标题";
     placeLbl.font = [UIFont systemFontOfSize:13];
-    placeLbl.textColor = [UIColor colorWithRed:0.3922 green:0.3922 blue:0.3922 alpha:1.0];
+    placeLbl.textColor = [UIColor colorWithRed:0.74f green:0.74f blue:0.74f alpha:1.00f];
     [_searchField addSubview:placeLbl];
     
     //搜索
@@ -75,14 +74,7 @@
     
     //只看本校搜索
     UIButton *searchSchoolBtn = [[UIButton alloc]initWithFrame:[self createFrameWithX:200 andY:160 andWidth:70 andHeight:40]];
-    searchSchoolBtn.backgroundColor = [UIColor whiteColor];
-    searchSchoolBtn.layer.borderColor = [UIColor colorWithRed:0.3922 green:0.3922 blue:0.3922 alpha:1.0].CGColor;
-    searchSchoolBtn.layer.borderWidth = 1.0;
-    searchSchoolBtn.layer.cornerRadius = 10.0;
-    searchSchoolBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [searchSchoolBtn setTitle:@"只看本校" forState:UIControlStateNormal];
-    [searchSchoolBtn setTitleColor:[UIColor colorWithRed:0.3922 green:0.3922 blue:0.3922 alpha:1.0] forState:UIControlStateNormal];
-    [searchSchoolBtn setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    [searchSchoolBtn setBackgroundImage:[UIImage imageNamed:@"schoolonly"] forState:UIControlStateNormal];
     [searchSchoolBtn addTarget:self action:@selector(searchSchoolPressed:) forControlEvents:UIControlEventTouchUpInside];
     [headView addSubview:searchSchoolBtn];
 
@@ -112,6 +104,12 @@
     _tableView.delegate = self;
     [self.view addSubview:_tableView];
     _tableView.tableHeaderView=headView;
+    
+    //点击跳到顶部
+    UIButton *topBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-50, SCREEN_HEIGHT-64-49-50-30, 30, 30)];
+    [topBtn setBackgroundImage:[UIImage imageNamed:@"click_top"] forState:UIControlStateNormal];
+    [topBtn addTarget:self action:@selector(clickToTop:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:topBtn];
 }
 #pragma mark - 搜索按钮点击
 -(void)searchPressed:(UIButton *)sender{
@@ -147,7 +145,7 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"NewsRevelationTableViewCell" owner:nil options:nil]lastObject];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    cell.titleLbl.text = @"故人西辞黄鹤楼，烟花三月下扬州。孤帆远影碧空尽，唯见长江天际。";
+    cell.titleLbl.text = @"故人西辞黄鹤楼，烟花三月下扬州。";
     cell.personLbl.text = @"隔壁老王";
     cell.numLbl.text = @"1000";
     cell.timeLbl.text = @"2016-03-22";
@@ -179,7 +177,10 @@
 }
 
 
-
+#pragma mark - 点击跳到顶部
+-(void)clickToTop:(UIButton *)sender{
+    [_tableView setContentOffset:CGPointMake(0,0) animated:YES];
+}
 
 
 

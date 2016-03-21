@@ -69,9 +69,9 @@
 {
     _selectedState = selectedState;
     if (self.selectedState) {
-        self.indicatorIcon.image = self.normalImage;
-    }else {
         self.indicatorIcon.image = self.selectedImage;
+    }else {
+        self.indicatorIcon.image = self.normalImage;
     }
 }
 
